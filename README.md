@@ -1,0 +1,1 @@
+Basic gem readme for search_party
