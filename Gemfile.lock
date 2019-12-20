@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    search_party (0.6.0)
+    search_party (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -152,11 +152,11 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 2.0)
   codeclimate-test-reporter
-  search_party!
   rails (~> 5.2.3)
   rake (~> 10.0)
   rspec (~> 3.0)
   rspec-rails (~> 3.6)
+  search_party!
   simplecov
   sqlite3
 

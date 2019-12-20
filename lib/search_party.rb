@@ -1,8 +1,9 @@
-# I have been thinking about writing a gem called search_party that deals with
-# searches for a given model. Thought I could test something using this project
-# as basis. These files will stay in the util folder for now.
-#
-# Don't know if I'll move forward with it, but it works for the current need.
+require 'active_record' unless defined? ActiveRecord
+require_relative 'search_party/search_party_attribute'
+require_relative 'search_party/search_party_engine'
+require_relative 'search_party/search_party_query'
+require_relative 'search_party/version'
+
 module SearchParty
   DEFAULT_BLACK_LIST = %w[id created_at updated_at].freeze
 
@@ -13,7 +14,7 @@ module SearchParty
     if params.nil?
       self
     else
-      params = params.permit(params.keys).to_h
+      puts params
       SearchPartyEngine
           .new(params,
                self,
