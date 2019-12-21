@@ -1,23 +1,23 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "search_party/version"
+require "seek_party/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "search_party"
-  spec.version       = SearchParty::VERSION
+  spec.name          = "seek_party"
+  spec.version       = SeekParty::VERSION
   spec.authors       = ["Charles Washington"]
   spec.email         = ["charles_was_7@hotmail.com"]
 
-  spec.summary       = %q{SearchParty makes quick work of adding search functionalities to your models.}
+  spec.summary       = %q{SeekParty makes quick work of adding search functionalities to your models.}
   spec.description   = %q{This gem should be used alongside ActiveRecord and uses introspection in order to check the fields of a given model. }
-  spec.homepage      = "https://github.com/caws/search_party"
+  spec.homepage      = "https://github.com/caws/seek_party"
   spec.license       = "MIT"
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/caws/search_party"
-  spec.metadata["changelog_uri"] = "https://github.com/caws/search_party"
+  spec.metadata["source_code_uri"] = "https://github.com/caws/seek_party"
+  spec.metadata["changelog_uri"] = "https://github.com/caws/seek_party"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

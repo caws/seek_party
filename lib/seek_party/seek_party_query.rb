@@ -1,5 +1,5 @@
-module SearchParty
-  class SearchPartyQuery
+module SeekParty
+  class SeekPartyQuery
 
     attr_accessor :params,
                   :queries
@@ -67,16 +67,20 @@ module SearchParty
       elsif db_postgresql?
         "LOWER(#{column_name}::VARCHAR)"
       else
-        raise "SearchParty does not support #{ActiveRecord::Base.connection.class}"
+        raise "SeekParty does not support #{ActiveRecord::Base.connection.class}"
       end
     end
 
     def db_sqlite3?
       ActiveRecord::Base.connection.instance_of? ActiveRecord::ConnectionAdapters::SQLite3Adapter
+    rescue StandardError
+      false
     end
 
     def db_postgresql?
       ActiveRecord::Base.connection.instance_of? ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
+    rescue StandardError
+      false
     end
   end
 end

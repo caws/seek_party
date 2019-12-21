@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    search_party (0.0.1)
+    seek_party (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -156,7 +156,7 @@ DEPENDENCIES
   rake (~> 10.0)
   rspec (~> 3.0)
   rspec-rails (~> 3.6)
-  search_party!
+  seek_party!
   simplecov
   sqlite3
 

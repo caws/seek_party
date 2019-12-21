@@ -1,5 +1,5 @@
-module SearchParty
-  class SearchPartyAttribute
+module SeekParty
+  class SeekPartyAttribute
     attr_accessor :inspected_class,
                   :white_list,
                   :black_list
