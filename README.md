@@ -23,7 +23,9 @@ Below is what's currently doable:
   - search for specific attributes (by passing a params hash where the key is your attribute name and 
     the value is what you're looking for).
   - hit the database with a query containing LIKE for all attributes not present in the BLACK_LIST and using
-    a value stored in you params[:search] key. 
+    a value stored in your params[:search] key. 
+  - hit the database with a query containing LIKE and the operator = for all attributes not present in the BLACK_LIST and using
+    a value stored in your params[:search] key and a key for one of your attributes (params[:name]).     
 
 PS: The DEFAULT_BLACK_LIST contains the attributes :id, :created_at and :updated_at. You can pass your own
     DEFAULT_BLACK_LIST when calling the #search method from your model.
@@ -67,7 +69,7 @@ You could search the table like so:
 
 ``` ruby
 params = {search: 'bilbo'}
-User.search(params: params).to_sql
+User.search(params: params)
 ```
 
 And it would produce the following query for Sqlite3:
@@ -82,7 +84,7 @@ in the following way:
 
 ``` ruby
 params = {search: 'bilbo'}
-User.search(params: params, white_list: ['name']).to_sql
+User.search(params: params, white_list: ['name'])
 ```
 
 Which would in turn produce the following query:
@@ -98,7 +100,7 @@ Which means that the following:
 
 ``` ruby
 params = {name: 'bilbo'}
-User.search(params: params).to_sql
+User.search(params: params)
 ```
 
 Would produce a query like this:
@@ -117,7 +119,7 @@ key as well as one key for each one of your attributes like this:
 
 ``` ruby
 params = {search: 'bilbo@theshire.com', name: 'bilbo'}
-User.search(params: params).to_sql
+User.search(params: params)
 ```
 
 And this would result in the following query being produced:
