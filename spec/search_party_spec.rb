@@ -8,16 +8,14 @@ User.create(name: 'Charles Wellington', email: 'c.wellington@somewhere.com')
 User.create(name: 'Bilbo Baggins', email: 'bilbo@theshire.com')
 
 RSpec.describe SearchParty do
-  it 'has a version number' do
+  it "has a version number" do
     expect(SearchParty::VERSION).not_to be nil
   end
 
   context 'when using it correctly' do
-    it '#search should return one result' do
-      #params = {}
-      #params[:search] = 'bilbo'
-      #puts User.search(params: params)
+    it '#search for bilbo should return one result' do
+      params = {search: 'bilbo'}
+      expect(User.search(params: params).count).to eq(1)
     end
   end
 end
-
