@@ -19,5 +19,5 @@ group :test do
   gem 'simplecov', require: false
 end
 
-# Specify your gem's dependencies in search_party.gemspec
+# Specify your gem's dependencies in seek_party.gemspec
 gemspec

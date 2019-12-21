@@ -1,3 +1,3 @@
-module SearchParty
+module SeekParty
   VERSION = '0.0.1'.freeze
 end

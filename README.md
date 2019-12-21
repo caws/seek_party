@@ -1,4 +1,4 @@
-# SearchParty - Searches made easy
+# SeekParty - Searches made easy
 
 ### What is this?
 
@@ -7,7 +7,7 @@ having to write SQL code?
 
 **Then this is for you.** 
 
-SearchParty adds the method #search to classes that extend it. Once called, SearchParty builds and runs those ugly SQL
+SeekParty adds the method #search to classes that extend it. Once called, SeekParty builds and runs those ugly SQL
 queries in a nice way by inspecting your attributes and checking what is present in your params hash
 against the attributes of your model.
 
@@ -32,7 +32,7 @@ Below is what's currently doable:
 
 PS: The DEFAULT_BLACK_LIST contains the attributes :id, :created_at and :updated_at. You can pass your own
     DEFAULT_BLACK_LIST when calling the #search method from your model, but I recommend using the WHITE_LIST, 
-    as SearchParty will then only generate queries using the column names present there.
+    as SeekParty will then only generate queries using the column names present there.
 
 ## Getting started
 
@@ -41,7 +41,7 @@ PS: The DEFAULT_BLACK_LIST contains the attributes :id, :created_at and :updated
 Add the following to your Gemfile
 
 ``` ruby
-gem 'search_party', '~> 0.0.1'
+gem 'seek_party', '~> 0.0.1'
 ```
 Then run:
 
@@ -49,11 +49,11 @@ Then run:
 bundle install
 ```
 
-Add the SearchParty functionality to your model:
+Add the SeekParty functionality to your model:
 
 ``` ruby
 class User < ApplicationRecord
-  extend SearchParty
+  extend SeekParty
   ...
 end
 ```
@@ -100,7 +100,7 @@ Which would in turn produce the following query:
 SELECT "users".* FROM "users" WHERE (LOWER(CAST(name AS TEXT)) LIKE '%bilbo%')
 ```
 
-If your params hash does not contain a search key, SearchParty will try to compare
+If your params hash does not contain a search key, SeekParty will try to compare
 the attributes in your model with the keys available in the params hash.
 
 Which means that the following:
@@ -115,7 +115,7 @@ Would produce a query like this:
 SELECT "users".* FROM "users" WHERE (LOWER(CAST(name AS TEXT)) = 'bilbo')
 ```
 
-SearchParty would use the equals operator instead of the LIKE, since it infers that
+SeekParty would use the equals operator instead of the LIKE, since it infers that
 if you have keys in your params hash that match the attributes in your model, you basically 
 know what you are looking for.
 
@@ -149,7 +149,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/caws/search_party. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/caws/seek_party. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -157,4 +157,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the SearchParty project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/search_party/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the SeekParty project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/seek_party/blob/master/CODE_OF_CONDUCT.md).
