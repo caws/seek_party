@@ -1,5 +1,9 @@
 # SeekParty - Searches made easy
 
+<p align="center">
+  <img width="1000" height="204" src="https://i.ibb.co/CHjZYwj/search-party-logo-vector.png">
+</p>
+
 ### What is this?
 
 Have you ever had to write a search functionality for a web application and found yourself
