@@ -20,10 +20,10 @@ module SearchParty
 
     def build_subquery_string(attribute, attribute_deep)
       if params[:search].present?
-        queries[attribute] << " AND LOWER(#{attribute_deep}::VARCHAR) = "\
+        queries[attribute] << " AND #{cast_according_to_adapter(attribute_deep)} = "\
                                 "'#{params[attribute_deep.to_sym].to_s.downcase}'"
       else
-        queries[attribute_deep] = "LOWER(#{attribute_deep}::VARCHAR) = "\
+        queries[attribute_deep] = "#{cast_according_to_adapter(attribute_deep)} = "\
                                 "'#{params[attribute_deep.to_sym].to_s.downcase}'"
       end
     end
@@ -31,7 +31,7 @@ module SearchParty
     def build_base_queries(attributes)
       attributes.each do |attribute|
         if params[:search].present?
-          queries[attribute] = "LOWER(#{attribute}::VARCHAR) LIKE "\
+          queries[attribute] = "#{cast_according_to_adapter(attribute)} LIKE "\
                              "'%#{params[:search].downcase}%'"
         end
 
@@ -59,6 +59,24 @@ module SearchParty
       end
 
       final_query
+    end
+
+    def cast_according_to_adapter(column_name)
+      if db_sqlite3?
+        "LOWER(CAST(#{column_name} AS TEXT))"
+      elsif db_postgresql?
+        "LOWER(#{column_name}::VARCHAR)"
+      else
+        raise "SearchParty does not support #{ActiveRecord::Base.connection.class}"
+      end
+    end
+
+    def db_sqlite3?
+      ActiveRecord::Base.connection.instance_of? ActiveRecord::ConnectionAdapters::SQLite3Adapter
+    end
+
+    def db_postgresql?
+      ActiveRecord::Base.connection.instance_of? ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
     end
   end
 end
