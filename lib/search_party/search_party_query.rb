@@ -10,6 +10,8 @@ module SearchParty
     end
 
     def build_query(attributes)
+      return unless params
+
       build_base_queries(attributes)
       build_final_query
     end
