@@ -4,7 +4,7 @@ module SearchParty
                   :search_party_query,
                   :inspected_class
 
-    def initialize(inspected_class, params: params, white_list: nil, black_list: nil, scopes: {})
+    def initialize(inspected_class, params: {}, white_list: nil, black_list: nil, scopes: {})
       @search_party_attribute = SearchPartyAttribute.new(inspected_class, white_list, black_list)
       @search_party_query = SearchPartyQuery.new(params)
       @inspected_class = inspected_class
