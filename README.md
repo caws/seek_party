@@ -45,7 +45,7 @@ PS: The DEFAULT_BLACK_LIST contains the attributes :id, :created_at and :updated
 Add the following to your Gemfile
 
 ``` ruby
-gem 'seek_party', '~> 0.0.3'
+gem 'seek_party', '~> 0.0.4'
 ```
 Then run:
 
