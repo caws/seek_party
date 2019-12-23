@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seek_party (0.0.3)
+    seek_party (0.0.4)
 
 GEM
   remote: https://rubygems.org/
