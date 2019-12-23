@@ -25,5 +25,13 @@ RSpec.describe SeekParty do
                    .insanely_specific_and_useless_scope('charles@somewhere.com', 'Charles Aquino')
       expect(result.count).to eq(1)
     end
+
+    it '#search for Aquino with email should return one result' do
+      params = {search: 'Aquino', email: 'charles@somewhere.com'}
+      result = User
+                   .search(params: params)
+                   .insanely_specific_and_useless_scope('charles@somewhere.com', 'Charles Aquino')
+      expect(result.count).to eq(1)
+    end
   end
 end

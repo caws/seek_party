@@ -1,7 +1,9 @@
 require 'active_record' unless defined? ActiveRecord
+require_relative 'seek_party/models/sp_attribute'
+require_relative 'seek_party/models/sp_query'
 require_relative 'seek_party/seek_party_attribute'
 require_relative 'seek_party/seek_party_engine'
-require_relative 'seek_party/seek_party_query'
+require_relative 'seek_party/seek_party_query_builder'
 require_relative 'seek_party/version'
 
 module SeekParty
