@@ -5,17 +5,17 @@ module SeekParty
                   :black_list
 
     def initialize(inspected_class, white_list, black_list)
-      self.inspected_class = inspected_class
-      self.white_list = white_list
-      self.black_list = black_list
+      @inspected_class = inspected_class
+      @white_list = white_list
+      @black_list = black_list
     end
 
     # Compare attributes to params passed
     # If only search is present, query against all params
-    # If both search and other attributes match agains the
+    # If both search and other attributes match against the
     # params hash, query against them too.
     def discover_attributes
-      check_attributes inspected_class.new
+      check_attributes @inspected_class.new
     end
 
     private
@@ -23,31 +23,30 @@ module SeekParty
     def check_attributes(another_model)
       return nil if another_model.nil?
 
-      attributes = []
+      sp_attribute = SPAttribute.new(table_name: pluralize_and_snake_case_class_name)
+
       another_model.attributes.keys.each do |attribute|
         next unless another_model.has_attribute? attribute
         next if black_listed? attribute
 
-        if white_listed? attribute
-          attributes << "#{pluralize_and_snake_case_class_name}.#{attribute}"
-        end
+        sp_attribute.add_attribute(attribute) if white_listed? attribute
       end
 
-      attributes
+      sp_attribute
     end
 
     def white_listed?(attribute_name)
-      return true if white_list.nil?
+      return true if @white_list.nil?
 
-      white_list.include? attribute_name
+      @white_list.include? attribute_name
     end
 
     def black_listed?(attribute_name)
-      black_list.include? attribute_name
+      @black_list.include? attribute_name
     end
 
     def pluralize_and_snake_case_class_name
-      inspected_class.name.pluralize.underscore
+      @inspected_class.name.pluralize.underscore
     end
   end
 end

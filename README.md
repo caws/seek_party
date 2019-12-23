@@ -1,13 +1,5 @@
 # SeekParty - Searches made easy
 
-[![Build Status](https://travis-ci.org/caws/seek_party.svg?branch=master)](https://travis-ci.org/caws/seek_party)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a05e479c6f535645d307/maintainability)](https://codeclimate.com/github/caws/seek_party/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/a05e479c6f535645d307/test_coverage)](https://codeclimate.com/github/caws/seek_party/test_coverage)
-=======
-<p align="center">
-  <img width="1000" height="204" src="https://i.ibb.co/CHjZYwj/search-party-logo-vector.png">
-</p>
-
 ### What is this?
 
 Have you ever had to write a search functionality for a web application and found yourself
@@ -51,7 +43,7 @@ PS: The DEFAULT_BLACK_LIST contains the attributes :id, :created_at and :updated
 Add the following to your Gemfile
 
 ``` ruby
-gem 'seek_party', '~> 0.0.2'
+gem 'seek_party', '~> 0.0.3'
 ```
 Then run:
 

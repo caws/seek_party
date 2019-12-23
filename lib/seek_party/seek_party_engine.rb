@@ -4,16 +4,22 @@ module SeekParty
                   :seek_party_query,
                   :inspected_class
 
-    def initialize(inspected_class, params: {}, white_list: nil, black_list: nil, scopes: {})
-      @seek_party_attribute = SeekPartyAttribute.new(inspected_class, white_list, black_list)
-      @seek_party_query = SeekPartyQuery.new(params)
+    def initialize(inspected_class,
+                   params: {},
+                   white_list: nil,
+                   black_list: nil,
+                   scopes: {})
+      @seek_party_attribute = SeekPartyAttribute.new(inspected_class,
+                                                     white_list,
+                                                     black_list)
+      @seek_party_query = SeekPartyQueryBuilder.new(params)
       @inspected_class = inspected_class
       @scopes = scopes
     end
 
     def search
-      attributes = seek_party_attribute.discover_attributes
-      final_query = seek_party_query.build_query(attributes)
+      spa_attribute = seek_party_attribute.discover_attributes
+      final_query = seek_party_query.build_query(spa_attribute)
       run_search(final_query)
     end
 
