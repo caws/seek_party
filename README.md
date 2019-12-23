@@ -3,6 +3,10 @@
 [![Build Status](https://travis-ci.org/caws/seek_party.svg?branch=master)](https://travis-ci.org/caws/seek_party)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a05e479c6f535645d307/maintainability)](https://codeclimate.com/github/caws/seek_party/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a05e479c6f535645d307/test_coverage)](https://codeclimate.com/github/caws/seek_party/test_coverage)
+=======
+<p align="center">
+  <img width="1000" height="204" src="https://i.ibb.co/CHjZYwj/search-party-logo-vector.png">
+</p>
 
 ### What is this?
 
