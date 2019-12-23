@@ -28,7 +28,9 @@ module SeekParty
         next unless another_model.has_attribute? attribute
         next if black_listed? attribute
 
-        attributes << attribute if white_listed? attribute
+        if white_listed? attribute
+          attributes << "#{pluralize_and_snake_case_class_name}.#{attribute}"
+        end
       end
 
       attributes
@@ -42,6 +44,10 @@ module SeekParty
 
     def black_listed?(attribute_name)
       black_list.include? attribute_name
+    end
+
+    def pluralize_and_snake_case_class_name
+      inspected_class.name.pluralize.underscore
     end
   end
 end

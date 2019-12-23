@@ -41,6 +41,8 @@ Below is what's currently doable:
 PS: The DEFAULT_BLACK_LIST contains the attributes :id, :created_at and :updated_at. You can pass your own
     DEFAULT_BLACK_LIST when calling the #search method from your model, but I recommend using the WHITE_LIST, 
     as SeekParty will then only generate queries using the column names present there.
+    You should also keep in mind that when building the queries, seek_party tries to pluralize your table name in order to refer to the table
+    columns by their full name (ex: 'your_table.your_column_name').
 
 ## Getting started
 
@@ -49,7 +51,7 @@ PS: The DEFAULT_BLACK_LIST contains the attributes :id, :created_at and :updated
 Add the following to your Gemfile
 
 ``` ruby
-gem 'seek_party', '~> 0.0.1'
+gem 'seek_party', '~> 0.0.2'
 ```
 Then run:
 
@@ -90,7 +92,7 @@ instance that is available at the controller level.
 And it would produce the following query for Sqlite3:
 
 ``` sql
-SELECT "users".* FROM "users" WHERE (LOWER(CAST(name AS TEXT)) LIKE '%bilbo%' OR LOWER(CAST(email AS TEXT)) LIKE '%bilbo%')
+SELECT "users".* FROM "users" WHERE (LOWER(CAST(users.name AS TEXT)) LIKE '%bilbo%' OR LOWER(CAST(users.email AS TEXT)) LIKE '%bilbo%')
 ```
 
 As you can see, it took all of the attributes into consideration when generating the
@@ -105,7 +107,7 @@ User.search(params: params, white_list: ['name'])
 Which would in turn produce the following query:
 
 ``` sql
-SELECT "users".* FROM "users" WHERE (LOWER(CAST(name AS TEXT)) LIKE '%bilbo%')
+SELECT "users".* FROM "users" WHERE (LOWER(CAST(users.name AS TEXT)) LIKE '%bilbo%')
 ```
 
 If your params hash does not contain a search key, SeekParty will try to compare
@@ -120,7 +122,7 @@ User.search(params: params)
 
 Would produce a query like this:
 ``` sql
-SELECT "users".* FROM "users" WHERE (LOWER(CAST(name AS TEXT)) = 'bilbo')
+SELECT "users".* FROM "users" WHERE (LOWER(CAST(users.name AS TEXT)) = 'bilbo')
 ```
 
 SeekParty would use the equals operator instead of the LIKE, since it infers that
@@ -140,7 +142,7 @@ User.search(params: params)
 And this would result in the following query being produced:
 
 ``` sql
-SELECT "users".* FROM "users" WHERE (LOWER(CAST(name AS TEXT)) LIKE '%sugoi%' AND LOWER(CAST(name AS TEXT)) = 'bilbo' OR LOWER(CAST(email AS TEXT)) LIKE '%sugoi%' AND LOWER(CAST(name AS TEXT)) = 'bilbo')
+SELECT "users".* FROM "users" WHERE (LOWER(CAST(users.name AS TEXT)) LIKE '%sugoi%' AND LOWER(CAST(users.name AS TEXT)) = 'bilbo' OR LOWER(CAST(users.email AS TEXT)) LIKE '%sugoi%' AND LOWER(CAST(users.name AS TEXT)) = 'bilbo')
 ```
 
 ### TO DO
