@@ -37,8 +37,6 @@ Below is what's currently doable:
 PS: The DEFAULT_BLACK_LIST contains the attributes :id, :created_at and :updated_at. You can pass your own
     DEFAULT_BLACK_LIST when calling the #search method from your model, but I recommend using the WHITE_LIST, 
     as SeekParty will then only generate queries using the column names present there.
-    You should also keep in mind that when building the queries, seek_party tries to pluralize your table name in order to refer to the table
-    columns by their full name (ex: 'your_table.your_column_name').
 
 ## Getting started
 

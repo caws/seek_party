@@ -23,7 +23,7 @@ module SeekParty
     def check_attributes(another_model)
       return nil if another_model.nil?
 
-      sp_attribute = SPAttribute.new(table_name: pluralize_and_snake_case_class_name)
+      sp_attribute = SPAttribute.new(table_name: get_table_name)
 
       another_model.attributes.keys.each do |attribute|
         next unless another_model.has_attribute? attribute
@@ -45,8 +45,8 @@ module SeekParty
       @black_list.include? attribute_name
     end
 
-    def pluralize_and_snake_case_class_name
-      @inspected_class.name.pluralize.underscore
+    def get_table_name
+      @inspected_class.table_name.underscore
     end
   end
 end
