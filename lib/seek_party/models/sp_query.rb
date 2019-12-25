@@ -15,6 +15,8 @@ class SPQuery
   end
 
   def build_final_query
+    return if @queries.blank?
+
     @queries.map { |key, value|
       if key == @queries.keys.first
         value

@@ -13,6 +13,12 @@ RSpec.describe SeekParty do
   end
 
   context 'when using it correctly' do
+    it '#search with empty parameters should return #all records' do
+      params = {}
+      result = User.search(params: params)
+      expect(result.count).to eq(User.count)
+    end
+
     it '#search for bilbo should return one result' do
       params = {search: 'bilbo'}
       result = User.search(params: params)

@@ -14,9 +14,6 @@ module SeekParty
              black_list: DEFAULT_BLACK_LIST,
              white_list: nil,
              scopes: [])
-    # If there are params to work with, use SeekParty.
-    # Otherwise, just return an empty instance of ActiveRecord_Relation.
-    return none if params.empty?
 
     SeekPartyEngine
         .new(self,

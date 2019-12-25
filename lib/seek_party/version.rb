@@ -1,3 +1,3 @@
 module SeekParty
-  VERSION = '0.0.5'.freeze
+  VERSION = '0.0.7'.freeze
 end
