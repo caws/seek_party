@@ -136,7 +136,7 @@ User.search(params: params)
 And this would result in the following query being produced:
 
 ``` sql
-SELECT "users".* FROM "users" WHERE (LOWER(CAST(users.name AS TEXT)) LIKE '%sugoi%' AND LOWER(CAST(users.name AS TEXT)) = 'bilbo' OR LOWER(CAST(users.email AS TEXT)) LIKE '%sugoi%' AND LOWER(CAST(users.name AS TEXT)) = 'bilbo')
+SELECT "users".* FROM "users" WHERE (LOWER(CAST(users.name AS TEXT)) LIKE '%bilbo@theshire.com%' AND LOWER(CAST(users.name AS TEXT)) = 'bilbo' OR LOWER(CAST(users.email AS TEXT)) LIKE '%bilbo@theshire.com%' AND LOWER(CAST(users.name AS TEXT)) = 'bilbo')
 ```
 
 ### TO DO
