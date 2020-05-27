@@ -26,11 +26,22 @@ RSpec.describe SeekParty do
       expect(result).to include(bilbo_user)
     end
 
+    it '#search for Aquino with built in scope should return one result' do
+      params = {search: 'Aquino'}
+      result = User
+                 .search(
+                   params: params,
+                   scopes: [insanely_specific_and_useless_scope: ['charles@somewhere.com', 'Charles Aquino']]
+                 )
+      expect(result.count).to eq(1)
+      expect(result).to include(charles_aquino_user)
+    end
+
     it '#search for Aquino with chained scope should return one result' do
       params = {search: 'Aquino'}
       result = User
-                   .search(params: params)
-                   .insanely_specific_and_useless_scope('charles@somewhere.com', 'Charles Aquino')
+                 .search(params: params)
+                 .insanely_specific_and_useless_scope('charles@somewhere.com', 'Charles Aquino')
       expect(result.count).to eq(1)
       expect(result).to include(charles_aquino_user)
     end
@@ -38,8 +49,8 @@ RSpec.describe SeekParty do
     it '#search for Aquino with email should return one result' do
       params = {search: 'Aquino', email: 'charles@somewhere.com'}
       result = User
-                   .search(params: params)
-                   .insanely_specific_and_useless_scope('charles@somewhere.com', 'Charles Aquino')
+                 .search(params: params)
+                 .insanely_specific_and_useless_scope('charles@somewhere.com', 'Charles Aquino')
       expect(result.count).to eq(1)
       expect(result).to include(charles_aquino_user)
     end

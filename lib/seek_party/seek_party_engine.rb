@@ -39,8 +39,22 @@ module SeekParty
       # else, as the returned object from run_search is an
       # ActiveRecord_Relation object that would accept
       # method chaining
-      @scopes.each do |key, value|
-        @inspected_class = @inspected_class.method(key).call(value)
+      @scopes.each do |scope|
+        if scope.respond_to?(:keys)
+          scope.keys.each do |key|
+            scope_call(key, scope[key])
+          end
+        else
+          scope_call(scope, nil)
+        end
+      end
+    end
+
+    def scope_call(key, value)
+      if value.present?
+        @inspected_class = @inspected_class.method(key).call(*value)
+      else
+        @inspected_class = @inspected_class.method(key).call
       end
     end
   end
