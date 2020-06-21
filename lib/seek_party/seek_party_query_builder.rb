@@ -32,8 +32,8 @@ module SeekParty
         if params[:search].present?
           full_column_name = spattribute.get_full_column_name(attribute)
           cast_column_name = cast_according_to_adapter(full_column_name)
-          @sp_query.set_attribute_query(attribute, "#{cast_column_name} LIKE "\
-                                                 "'%#{params[:search].downcase}%'")
+          sanitized_sql = sanitize_sql(["#{cast_column_name} LIKE ?", "%#{params[:search].downcase}%"])
+          @sp_query.set_attribute_query(attribute, sanitized_sql)
         end
 
         # If there are other params being used other than :search
@@ -58,8 +58,11 @@ module SeekParty
     end
 
     def build_equals_query(attribute)
-      "#{cast_according_to_adapter(attribute)} = "\
-      "'#{@params[attribute.to_sym].to_s.downcase}'"
+      sanitize_sql(["#{cast_according_to_adapter(attribute)} = ?", @params[attribute.to_sym].to_s.downcase])
+    end
+
+    def sanitize_sql(sql_array)
+      ActiveRecord::Base::sanitize_sql_array(sql_array)
     end
 
     def db_sqlite3?
